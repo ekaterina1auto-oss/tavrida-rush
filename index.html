@@ -13,12 +13,32 @@
 <body>
   <main id="app" class="app-shell" aria-live="polite">
     <section id="screen-home" class="screen is-active screen-home">
-      <img class="screen-art" src="assets/menu.jpg" alt="Tavrida Rush" />
-      <div class="hit hit-play" data-screen="race" aria-label="Играть"></div>
-      <button class="hit hit-garage" data-screen="garage" aria-label="Гараж"></button>
-      <button class="hit hit-tracks" data-screen="tracks" aria-label="Трассы"></button>
-      <button class="hit hit-records" id="recordsBtn" aria-label="Рекорды"></button>
-      <button class="hit hit-settings" id="settingsBtn" aria-label="Настройки"></button>
+      <img class="screen-art home-bg" src="assets/menu.jpg" alt="Tavrida Rush" />
+      <div class="home-vignette"></div>
+      <div class="home-ui">
+        <div class="home-topbar">
+          <div class="pilot-card">
+            <div class="pilot-avatar">82</div>
+            <div><b>Гонщик_82</b><span>УРОВЕНЬ 12</span><i><u></u></i></div>
+          </div>
+          <div class="wallet"><span>CR</span><b>12 480</b><button>+</button></div>
+          <div class="wallet gem"><span>◆</span><b>350</b><button>+</button></div>
+        </div>
+        <div class="home-logo"><strong>TAVRIDA</strong><em>RUSH</em><small>КРЫМ ВСЕГДА В ДВИЖЕНИИ</small></div>
+        <div class="home-sign">
+          <div><b>A-291</b><span>Симферополь&nbsp;&nbsp;&nbsp;48</span><span>Ялта&nbsp;&nbsp;&nbsp;118</span><span>Севастополь&nbsp;&nbsp;&nbsp;82</span></div>
+          <div><span>КРЫМ</span><b>БЛИЖЕ,<br>ЧЕМ ТЫ ДУМАЕШЬ&nbsp;↗</b></div>
+        </div>
+        <div class="home-actions">
+          <button class="home-play" data-screen="race"><span>▶</span><b>ИГРАТЬ</b><i>»</i></button>
+          <div class="home-nav">
+            <button data-screen="garage"><span>🚘</span><b>ГАРАЖ</b><i>›</i></button>
+            <button data-screen="tracks"><span>🛣</span><b>ТРАССЫ</b><i>›</i></button>
+            <button id="recordsBtn"><span>🏆</span><b>РЕКОРДЫ</b><i>›</i></button>
+          </div>
+          <button class="home-settings" id="settingsBtn"><span>⚙</span><b>НАСТРОЙКИ</b><i>›</i></button>
+        </div>
+      </div>
     </section>
 
     <section id="screen-tracks" class="screen screen-panel">
