@@ -1284,6 +1284,14 @@
       state.car = btn.dataset.car;
       state.type = btn.dataset.type;
       const hc=one('#homeCarName'); if(hc) hc.textContent=state.car;
+      const hcc=one('#homeCarClass');
+      if(hcc){
+        const parts=(carSpecs[state.car]?.label||'S · 642').split('·').map((x)=>x.trim());
+        const badge=hcc.querySelector('i');
+        const score=hcc.querySelector('b');
+        if(badge) badge.textContent=parts[0]||'S';
+        if(score) score.textContent=parts[1]||'642';
+      }
       rebuildHomeCar();
       one('#garageName').textContent = state.car;
       one('#garageClass').textContent = carSpecs[state.car].label;
