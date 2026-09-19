@@ -1726,7 +1726,7 @@
     const dial = one('#speedDial');
     if (dial) {
       const pct = Math.max(0, Math.min(1, state.speed / 300));
-      dial.style.setProperty('--speed-pct', pct);
+      dial.style.setProperty('--speed-angle', (42 + pct * 276).toFixed(1) + 'deg');
     }
     one('#speedVignette').classList.toggle('fast', state.speed > 190);
   }
