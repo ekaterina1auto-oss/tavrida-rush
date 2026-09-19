@@ -64,12 +64,10 @@
         <div><b>ГАРАЖ</b><span id="garageSubtitle">BMW M340i</span></div>
         <div class="credits">CR 12 480</div>
       </header>
-      <div class="garage-showcase">
-        <div id="garageCar" class="garage-car bmw" aria-label="Выбранная машина">
-          <i class="car-roof"></i><i class="car-glass"></i><i class="car-body"></i>
-          <i class="wheel wl"></i><i class="wheel wr"></i><i class="lamp ll"></i><i class="lamp lr"></i>
-        </div>
+      <div class="garage-showcase garage-showcase-3d">
+        <canvas id="garage3d" aria-label="3D автомобиль в гараже"></canvas>
         <div id="garageFx" class="garage-fx"></div>
+        <div class="garage-hint">Проведи пальцем, чтобы осмотреть автомобиль</div>
       </div>
       <div class="garage-sheet glass">
         <div class="garage-main">
@@ -94,9 +92,8 @@
 
     <section id="screen-race" class="screen screen-race">
       <div class="race-viewport" id="raceViewport">
-        <img id="raceBg" class="race-bg" src="assets/menu.jpg" alt="Трасса Таврида" />
-        <div class="race-shade"></div>
-        <div class="road-perspective"><i></i><i></i></div>
+        <canvas id="race3d" aria-label="3D заезд Tavrida Rush"></canvas>
+        <div class="race-cinematic-shade"></div>
         <div class="hud">
           <div><b id="hudSpeed">154</b><span>КМ/Ч</span></div>
           <div><b>×<span id="hudCombo">1</span></b><span>КОМБО</span></div>
@@ -105,11 +102,7 @@
         <div id="raceLabel" class="race-label">BMW M340i · Таврида</div>
         <button id="pauseBtn" class="pause-btn">ПАУЗА</button>
         <div id="eventBanner" class="event-banner">NEAR MISS ×2</div>
-        <div id="trafficLayer" class="traffic-layer"></div>
-        <div id="playerCar" class="player-car bmw" aria-label="Автомобиль игрока">
-          <i class="p-roof"></i><i class="p-body"></i><i class="p-tail left"></i><i class="p-tail right"></i>
-        </div>
-        <div id="roadsideLayer" class="roadside-layer"></div>
+        <div class="speed-vignette" id="speedVignette"></div>
       </div>
       <div class="controls">
         <button id="leftBtn" class="control">←</button>
@@ -124,6 +117,6 @@
 
     <div id="toast" class="toast"></div>
   </main>
-  <script src="game.js"></script>
+  <script type="module" src="game.js"></script>
 </body>
 </html>
