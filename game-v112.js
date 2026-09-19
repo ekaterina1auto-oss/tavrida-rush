@@ -850,10 +850,13 @@
       }
     }[type];
 
-    const refined = type==='bmw' || type==='vesta';
-    const body=refined ? loftShellRounded(spec.body,paint,type==='bmw'?.82:.84) : loftShell(spec.body,paint);
+    // All hero cars use the rounded loft. The previous coarse shell made Porsche/AMG
+    // look like low-poly toys on the main screen.
+    const bodyShoulder = type==='porsche' ? .76 : (type==='amg' ? .80 : (type==='bmw' ? .82 : .84));
+    const cabinShoulder = type==='porsche' ? .72 : (type==='amg' ? .76 : (type==='bmw' ? .78 : .80));
+    const body=loftShellRounded(spec.body,paint,bodyShoulder);
     group.add(body);
-    const cabin=refined ? loftShellRounded(spec.cabin,glass,type==='bmw'?.78:.80) : loftShell(spec.cabin,glass);
+    const cabin=loftShellRounded(spec.cabin,glass,cabinShoulder);
     group.add(cabin);
 
     // roof cap and side sills
@@ -970,7 +973,7 @@
         const lamp=new THREE.Mesh(new THREE.CircleGeometry(.215,28),head);
         lamp.position.set(side*.58,.89,nose-.004); lamp.rotation.y=Math.PI; group.add(lamp);
         const ring=new THREE.Mesh(new THREE.TorusGeometry(.22,.014,8,28),chrome);
-        ring.position.copy(lamp.position); ring.rotation.y=Math.PI/2; group.add(ring);
+        ring.position.copy(lamp.position); ring.position.z-=.006; ring.rotation.y=Math.PI; group.add(ring);
       });
       addLampBar(group,1.64,.075,tailZ,.84,0,tail);
       const duck=new THREE.Mesh(new THREE.BoxGeometry(1.52,.055,.22),black);
@@ -1019,7 +1022,7 @@
       // Hero composition: keep the whole car visible and leave breathing room for the UI.
       homeCamera=new THREE.PerspectiveCamera(47,1,.1,140);
       homeCamera.position.set(5.55,2.95,11.85);
-      homeCamera.lookAt(-.10,.72,-.85);
+      homeCamera.lookAt(.10,.61,-.68);
 
       homeScene.add(new THREE.HemisphereLight(0xd8e7f2,0x3b2c22,2.75));
       const key=new THREE.DirectionalLight(0xffd6a3,5.8);
@@ -1052,14 +1055,15 @@
         r.position.set(x,.25,-15); homeScene.add(r);
       });
 
-      // simple silhouette hills
-      for(let n=0;n<10;n++){
+      // Distant Crimean mountain silhouettes: smoother and safely behind the hero car.
+      for(let n=0;n<12;n++){
         const hill=new THREE.Mesh(
-          new THREE.ConeGeometry(4+Math.random()*7,5+Math.random()*9,7),
-          new THREE.MeshStandardMaterial({color:n%2?0x5f5d54:0x696259,roughness:1})
+          new THREE.ConeGeometry(6+Math.random()*7,4.5+Math.random()*7,18),
+          new THREE.MeshStandardMaterial({color:n%2?0x615e55:0x71695d,roughness:1})
         );
-        hill.position.set((Math.random()>.5?1:-1)*(10+Math.random()*18),2.0,-18-Math.random()*38);
-        hill.scale.x=1.4+Math.random();
+        hill.position.set((Math.random()>.5?1:-1)*(15+Math.random()*20),1.35,-30-Math.random()*34);
+        hill.scale.x=1.8+Math.random()*1.15;
+        hill.scale.z=.86+Math.random()*.28;
         homeScene.add(hill);
       }
 
@@ -1085,10 +1089,10 @@
     const spec=carSpecs[state.car];
     // Main menu car is deliberately smaller than the garage model:
     // it must read as a hero object, not cover the entire interface.
-    homeCar=makeGameCar(spec.type,spec.color,.80);
-    homeCar.position.set(-.08,.02,-.45);
-    homeCar.rotation.y=-.52;
-    homeCar.userData.heroYaw=-.52;
+    homeCar=makeGameCar(spec.type,spec.color,.90);
+    homeCar.position.set(.38,.015,-.32);
+    homeCar.rotation.y=-.49;
+    homeCar.userData.heroYaw=-.49;
     homeScene.add(homeCar);
   }
 
@@ -1290,7 +1294,16 @@
       btn.classList.add('selected');
       state.car = btn.dataset.car;
       state.type = btn.dataset.type;
-      const hc=one('#homeCarName'); if(hc) hc.textContent=state.car;
+      const hc=one('#homeCarName');
+      if(hc){
+        const shortHomeName={
+          'Lada Vesta Street Beast':'Lada Vesta',
+          'BMW M340i':'BMW M340i',
+          'Mercedes-AMG C 63 S':'AMG C 63 S',
+          'Porsche 911 Carrera S':'Porsche 911'
+        };
+        hc.textContent=shortHomeName[state.car]||state.car;
+      }
       const hcc=one('#homeCarClass');
       if(hcc){
         const parts=(carSpecs[state.car]?.label||'S · 642').split('·').map((x)=>x.trim());
