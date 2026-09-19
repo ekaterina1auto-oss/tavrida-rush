@@ -1791,3 +1791,28 @@ body{
   .home-sign{left:calc(var(--safe-left) + 12px)!important;width:134px!important}
   .home-logo{left:12%!important;right:12%!important}
 }
+
+
+/* === v1.1.4 HOME POLISH: SMOOTH HERO + CLEAN CARD === */
+.home-car-name{
+  max-width:112px!important;
+  overflow:visible!important;
+  text-overflow:clip!important;
+  font-size:10.5px!important;
+}
+.home-car-card{
+  overflow:hidden;
+}
+.home-route-pill{
+  transform:translateY(-1px);
+}
+.home-sign{
+  opacity:.78!important;
+  filter:saturate(.92) brightness(.94);
+}
+.home3d-canvas{
+  filter:brightness(1.11) saturate(1.04) contrast(1.025)!important;
+}
+@media(max-width:380px){
+  .home-car-name{font-size:9.5px!important;max-width:96px!important}
+}
