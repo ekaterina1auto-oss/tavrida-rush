@@ -13,12 +13,13 @@
   <title>Tavrida Rush — Alpha</title>
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link rel="stylesheet" href="styles-v100.css?v=20260919-1305" />
+  <link rel="stylesheet" href="styles-v110.css?v=20260919-1335" />
 </head>
 <body>
   <main id="app" class="app-shell" aria-live="polite">
     <section id="screen-home" class="screen is-active screen-home">
       <img class="screen-art home-bg" src="assets/menu.jpg" alt="Tavrida Rush" />
+      <canvas id="home3d" class="home3d-canvas" aria-label="Tavrida Rush live hero"></canvas>
       <div class="home-atmosphere"></div>
       <div class="home-vignette"></div>
       <div class="home-ui">
@@ -31,9 +32,9 @@
           <div class="wallet gem"><span>◆</span><b>350</b><button>+</button></div>
         </div>
         <div class="home-logo"><strong>TAVRIDA</strong><em>RUSH</em><small>КРЫМ ВСЕГДА В ДВИЖЕНИИ</small></div>
-        <div class="home-sign">
-          <div><b>A-291</b><span>Симферополь&nbsp;&nbsp;&nbsp;48</span><span>Ялта&nbsp;&nbsp;&nbsp;118</span><span>Севастополь&nbsp;&nbsp;&nbsp;82</span></div>
-          <div><span>КРЫМ</span><b>БЛИЖЕ,<br>ЧЕМ ТЫ ДУМАЕШЬ&nbsp;↗</b></div>
+        <div class="home-sign home-route-card">
+          <div><b id="homeRouteTitle">ТАВРИДА</b><span>A-291 · КРЫМ</span><span>СИМФЕРОПОЛЬ → ФЕОДОСИЯ</span></div>
+          <div><span>РЕЖИМ</span><b>ENDLESS<br>RUSH ↗</b></div>
         </div>
         <button class="music-toggle home-music" aria-label="Выключить музыку">♫</button>
         <div class="home-current glass">
@@ -51,7 +52,7 @@
           </div>
           <button class="home-settings" id="settingsBtn"><span>⚙</span><b>НАСТРОЙКИ</b><i>›</i></button>
         </div>
-        <div class="build-chip">v1.0 ROUTES+MUSIC</div>
+        <div class="build-chip">v1.1 NIGHT+HOME</div>
       </div>
     </section>
 
@@ -182,6 +183,6 @@
 
     <div id="toast" class="toast"></div>
   </main>
-  <script type="module" src="game-v100.js?v=20260919-1305"></script>
+  <script type="module" src="game-v110.js?v=20260919-1335"></script>
 </body>
 </html>
