@@ -13,7 +13,7 @@
   <title>Tavrida Rush — Alpha</title>
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link rel="stylesheet" href="styles-v052.css?v=20260919-0935" />
+  <link rel="stylesheet" href="styles-v070.css?v=20260919-1115" />
 </head>
 <body>
   <main id="app" class="app-shell" aria-live="polite">
@@ -43,7 +43,7 @@
           </div>
           <button class="home-settings" id="settingsBtn"><span>⚙</span><b>НАСТРОЙКИ</b><i>›</i></button>
         </div>
-        <div class="build-chip">v0.6 REAL SHAPES</div>
+        <div class="build-chip">v0.7 HERO VISUAL</div>
       </div>
     </section>
 
@@ -100,13 +100,27 @@
       <div class="race-viewport" id="raceViewport">
         <canvas id="race3d" aria-label="3D заезд Tavrida Rush"></canvas>
         <div class="race-cinematic-shade"></div>
-        <div class="hud">
-          <div><b id="hudSpeed">154</b><span>КМ/Ч</span></div>
-          <div><b>×<span id="hudCombo">1</span></b><span>КОМБО</span></div>
-          <div><b id="hudScore">0</b><span>ОЧКИ</span></div>
+        <div class="hero-hud">
+          <button id="pauseBtn" class="hero-pause" aria-label="Пауза"><span></span><span></span></button>
+          <div class="race-brand" aria-label="Tavrida Rush">
+            <strong>TAVRIDA</strong>
+            <em>RUSH</em>
+            <small>КРЫМ ВСЕГДА В ДВИЖЕНИИ</small>
+          </div>
+          <div class="hero-score-panel">
+            <div class="hero-score-main">
+              <div><span>СЧЁТ</span><b id="hudScore">0</b></div>
+              <i></i>
+              <div><span>КОМБО</span><b>×<u id="hudCombo">1</u></b></div>
+            </div>
+            <div class="hero-distance"><span>ПРОЙДЕНО</span><b id="hudDistance">0.0</b><small>КМ</small></div>
+          </div>
         </div>
-        <div id="raceLabel" class="race-label">BMW M340i · Таврида</div>
-        <button id="pauseBtn" class="pause-btn">ПАУЗА</button>
+        <div id="raceLabel" class="race-label hero-race-label">BMW M340i · Таврида</div>
+        <div class="hero-speed-dial" id="speedDial" style="--speed-angle:135deg">
+          <div class="hero-speed-ring"></div>
+          <div class="hero-speed-value"><b id="hudSpeed">154</b><span>КМ/Ч</span><i>D</i></div>
+        </div>
         <div id="eventBanner" class="event-banner">NEAR MISS ×2</div>
         <div class="speed-vignette" id="speedVignette"></div>
       </div>
@@ -160,6 +174,6 @@
 
     <div id="toast" class="toast"></div>
   </main>
-  <script type="module" src="game-v060.js?v=20260919-0945"></script>
+  <script type="module" src="game-v070.js?v=20260919-1115"></script>
 </body>
 </html>
