@@ -18,40 +18,96 @@
 <body>
   <main id="app" class="app-shell" aria-live="polite">
     <section id="screen-home" class="screen is-active screen-home">
-      <img class="screen-art home-bg" src="assets/menu.jpg" alt="Tavrida Rush" />
+      <img class="screen-art home-bg" src="assets/menu.jpg" alt="Tavrida Rush — Крымская трасса" />
       <div class="home-atmosphere"></div>
       <div class="home-vignette"></div>
+
       <div class="home-ui">
         <div class="home-topbar">
           <div class="pilot-card">
-            <div class="pilot-avatar">82</div>
+            <div class="pilot-avatar" aria-hidden="true">
+              <svg viewBox="0 0 48 56" role="img">
+                <path d="M24 4c-9.7 0-17 7.2-17 17v10.5c0 4.3 1.4 8.4 4 11.7L17 51h15l5.8-7.7A18.8 18.8 0 0 0 41 32.6V21C41 11.3 33.7 4 24 4Z" fill="#151a21" stroke="#b8c0c9" stroke-width="1.2"/>
+                <path d="M10.2 19.5c5-4.2 10.6-6.3 16.8-6.3 5.3 0 9.6 1.5 12.8 4.4l-3.6 11.7H13.7l-3.5-9.8Z" fill="#06090d" stroke="#6e7781" stroke-width="1"/>
+                <path d="M15 31.8h18.2l-2.7 5.7H18l-3-5.7Z" fill="#242b34"/>
+                <path d="M18.2 16.3h12.6" stroke="#e2e6ea" stroke-width="1.3" stroke-linecap="round"/>
+              </svg>
+            </div>
             <div><b>Гонщик_82</b><span>УРОВЕНЬ 12</span><i><u></u></i></div>
           </div>
-          <div class="wallet"><span>CR</span><b>12 480</b><button>+</button></div>
-          <div class="wallet gem"><span>◆</span><b>350</b><button>+</button></div>
+
+          <div class="wallet"><span class="coin-icon">CR</span><b>12 480</b><button type="button" aria-label="Добавить кредиты">+</button></div>
+          <div class="wallet gem"><span class="gem-icon">◆</span><b>350</b><button type="button" aria-label="Добавить кристаллы">+</button></div>
         </div>
-        <div class="home-logo"><strong>TAVRIDA</strong><em>RUSH</em><small>КРЫМ ВСЕГДА В ДВИЖЕНИИ</small></div>
-        <div class="home-sign">
-          <div><b>A-291</b><span>Симферополь&nbsp;&nbsp;&nbsp;48</span><span>Ялта&nbsp;&nbsp;&nbsp;118</span><span>Севастополь&nbsp;&nbsp;&nbsp;82</span></div>
-          <div><span>КРЫМ</span><b>БЛИЖЕ,<br>ЧЕМ ТЫ ДУМАЕШЬ&nbsp;↗</b></div>
+
+        <div class="home-logo" aria-label="Tavrida Rush">
+          <strong>TAVRIDA</strong>
+          <em>RUSH</em>
+          <small>КРЫМ ВСЕГДА В ДВИЖЕНИИ</small>
         </div>
-        <button class="music-toggle home-music" aria-label="Выключить музыку">♫</button>
-        <div class="home-current glass">
-          <div><span>ТРАССА</span><b id="homeTrackName">Таврида</b></div>
-          <i></i>
-          <div><span>АВТОМОБИЛЬ</span><b id="homeCarName">BMW M340i</b></div>
-          <em>СЕЗОН 01</em>
-        </div>
-        <div class="home-actions">
-          <button class="home-play" data-screen="race"><span>▶</span><b>ИГРАТЬ</b><i>»</i></button>
-          <div class="home-nav">
-            <button data-screen="garage"><span>🚘</span><b>ГАРАЖ</b><i>›</i></button>
-            <button data-screen="tracks"><span>🛣</span><b>ТРАССЫ</b><i>›</i></button>
-            <button id="recordsBtn"><span>🏆</span><b>РЕКОРДЫ</b><i>›</i></button>
+
+        <div class="home-sign" aria-label="Дорожный указатель А-291">
+          <div>
+            <b class="route-code">A-291</b>
+            <span class="route-row"><span>Симферополь</span><span>48</span></span>
+            <span class="route-row"><span>Ялта</span><span>118</span></span>
+            <span class="route-row"><span>Севастополь</span><span>82</span></span>
           </div>
-          <button class="home-settings" id="settingsBtn"><span>⚙</span><b>НАСТРОЙКИ</b><i>›</i></button>
+          <div>
+            <span class="route-kicker">КРЫМ</span>
+            <b class="route-promise">БЛИЖЕ,<br>ЧЕМ ТЫ ДУМАЕШЬ</b>
+            <span class="route-arrow">↗</span>
+          </div>
         </div>
-        <div class="build-chip">v1.1.1 HOME FIX</div>
+
+        <button type="button" class="music-toggle home-music" aria-label="Выключить музыку">♪</button>
+
+        <div class="home-stage-meta">
+          <div class="home-route-pill">
+            <span>ТРАССА</span>
+            <b id="homeTrackName">Таврида</b>
+          </div>
+
+          <div class="home-car-card">
+            <span class="car-caption">МОЙ АВТОМОБИЛЬ</span>
+            <div class="home-car-thumb" aria-hidden="true">
+              <svg viewBox="0 0 120 48">
+                <path d="M15 32 23 19c3-5 7-7 14-8l35-2c8 0 14 3 20 9l10 11 8 3v7H8v-5l7-2Z" fill="#111820" stroke="#8d98a5" stroke-width="1.1"/>
+                <path d="m34 13 34-1c7 0 12 2 17 7l5 6H26l8-12Z" fill="#223848" stroke="#748596" stroke-width=".8"/>
+                <path d="M32 25h63" stroke="#647281" stroke-width="1"/>
+                <circle cx="29" cy="37" r="7" fill="#080a0d" stroke="#7d8791" stroke-width="2"/>
+                <circle cx="91" cy="37" r="7" fill="#080a0d" stroke="#7d8791" stroke-width="2"/>
+                <path d="M12 31h11M98 30h9" stroke="#f6f8fa" stroke-width="2.2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <b id="homeCarName" class="home-car-name">BMW M340i</b>
+            <span class="home-class"><i>S</i><b>642</b></span>
+          </div>
+        </div>
+
+        <div class="home-actions">
+          <button type="button" class="home-play" data-screen="race"><span>▶</span><b>ИГРАТЬ</b><i>»</i></button>
+
+          <div class="home-nav">
+            <button type="button" data-screen="garage">
+              <span class="menu-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M6 21v-5l3-7h14l3 7v5"/><path d="M8 16h16M9 22v3M23 22v3"/><circle cx="10" cy="20" r="1.5"/><circle cx="22" cy="20" r="1.5"/></svg></span>
+              <b>ГАРАЖ</b><i>›</i>
+            </button>
+            <button type="button" data-screen="tracks">
+              <span class="menu-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M10 28c2-8 3-16 7-24M22 28c-2-8-3-16-5-24"/><path d="M16 24v-4M16 16v-4M16 8V4"/></svg></span>
+              <b>ТРАССЫ</b><i>›</i>
+            </button>
+            <button type="button" id="recordsBtn">
+              <span class="menu-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M10 5h12v7c0 5-2.5 8-6 8s-6-3-6-8V5Z"/><path d="M10 8H6v3c0 4 2 6 6 6M22 8h4v3c0 4-2 6-6 6M16 20v5M11 27h10"/></svg></span>
+              <b>РЕКОРДЫ</b><i>›</i>
+            </button>
+          </div>
+
+          <button type="button" class="home-settings" id="settingsBtn">
+            <span class="menu-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="4"/><path d="M16 4v4M16 24v4M4 16h4M24 16h4M7.5 7.5l2.8 2.8M21.7 21.7l2.8 2.8M24.5 7.5l-2.8 2.8M10.3 21.7l-2.8 2.8"/></svg></span>
+            <b>НАСТРОЙКИ</b><i>›</i>
+          </button>
+        </div>
       </div>
     </section>
 
