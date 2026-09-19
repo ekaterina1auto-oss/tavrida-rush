@@ -1334,6 +1334,22 @@
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.18;
 
+  function makeSoftLightTexture() {
+    const cv=document.createElement('canvas');
+    cv.width=cv.height=128;
+    const ctx=cv.getContext('2d');
+    const g=ctx.createRadialGradient(64,64,3,64,64,64);
+    g.addColorStop(0,'rgba(255,231,175,.95)');
+    g.addColorStop(.26,'rgba(255,205,120,.42)');
+    g.addColorStop(1,'rgba(255,190,90,0)');
+    ctx.fillStyle=g; ctx.fillRect(0,0,128,128);
+    const tex=new THREE.CanvasTexture(cv);
+    tex.colorSpace=THREE.SRGBColorSpace;
+    return tex;
+  }
+  const nightLightTexture=makeSoftLightTexture();
+
+
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 450);
   camera.position.set(0, 3.15, 8.65);
@@ -1841,21 +1857,6 @@
     return group;
   }
 
-
-  function makeSoftLightTexture() {
-    const cv=document.createElement('canvas');
-    cv.width=cv.height=128;
-    const ctx=cv.getContext('2d');
-    const g=ctx.createRadialGradient(64,64,3,64,64,64);
-    g.addColorStop(0,'rgba(255,231,175,.95)');
-    g.addColorStop(.26,'rgba(255,205,120,.42)');
-    g.addColorStop(1,'rgba(255,190,90,0)');
-    ctx.fillStyle=g; ctx.fillRect(0,0,128,128);
-    const tex=new THREE.CanvasTexture(cv);
-    tex.colorSpace=THREE.SRGBColorSpace;
-    return tex;
-  }
-  const nightLightTexture=makeSoftLightTexture();
 
   function makeRoadLamp(side = 1) {
     const group = new THREE.Group();
