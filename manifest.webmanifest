@@ -1,0 +1,9 @@
+{
+  "name":"Tavrida Rush",
+  "short_name":"Tavrida Rush",
+  "start_url":"./",
+  "display":"standalone",
+  "background_color":"#080b10",
+  "theme_color":"#080b10",
+  "orientation":"portrait-primary"
+}
