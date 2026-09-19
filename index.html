@@ -13,12 +13,13 @@
   <title>Tavrida Rush — Alpha</title>
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link rel="stylesheet" href="styles-v090.css?v=20260919-1210" />
+  <link rel="stylesheet" href="styles-v100.css?v=20260919-1305" />
 </head>
 <body>
   <main id="app" class="app-shell" aria-live="polite">
     <section id="screen-home" class="screen is-active screen-home">
       <img class="screen-art home-bg" src="assets/menu.jpg" alt="Tavrida Rush" />
+      <div class="home-atmosphere"></div>
       <div class="home-vignette"></div>
       <div class="home-ui">
         <div class="home-topbar">
@@ -34,6 +35,13 @@
           <div><b>A-291</b><span>Симферополь&nbsp;&nbsp;&nbsp;48</span><span>Ялта&nbsp;&nbsp;&nbsp;118</span><span>Севастополь&nbsp;&nbsp;&nbsp;82</span></div>
           <div><span>КРЫМ</span><b>БЛИЖЕ,<br>ЧЕМ ТЫ ДУМАЕШЬ&nbsp;↗</b></div>
         </div>
+        <button class="music-toggle home-music" aria-label="Выключить музыку">♫</button>
+        <div class="home-current glass">
+          <div><span>ТРАССА</span><b id="homeTrackName">Таврида</b></div>
+          <i></i>
+          <div><span>АВТОМОБИЛЬ</span><b id="homeCarName">BMW M340i</b></div>
+          <em>СЕЗОН 01</em>
+        </div>
         <div class="home-actions">
           <button class="home-play" data-screen="race"><span>▶</span><b>ИГРАТЬ</b><i>»</i></button>
           <div class="home-nav">
@@ -43,7 +51,7 @@
           </div>
           <button class="home-settings" id="settingsBtn"><span>⚙</span><b>НАСТРОЙКИ</b><i>›</i></button>
         </div>
-        <div class="build-chip">v0.9 GAMEPLAY</div>
+        <div class="build-chip">v1.0 ROUTES+MUSIC</div>
       </div>
     </section>
 
@@ -102,6 +110,7 @@
         <div class="race-cinematic-shade"></div>
         <div class="hero-hud">
           <button id="pauseBtn" class="hero-pause" aria-label="Пауза"><span></span><span></span></button>
+          <button class="music-toggle race-music" aria-label="Выключить музыку">♫</button>
           <div class="race-brand" aria-label="Tavrida Rush">
             <strong>TAVRIDA</strong>
             <em>RUSH</em>
@@ -173,6 +182,6 @@
 
     <div id="toast" class="toast"></div>
   </main>
-  <script type="module" src="game-v090.js?v=20260919-1210"></script>
+  <script type="module" src="game-v100.js?v=20260919-1305"></script>
 </body>
 </html>
