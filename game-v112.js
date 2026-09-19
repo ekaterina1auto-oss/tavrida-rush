@@ -1012,19 +1012,22 @@
       homeRenderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.15));
       homeRenderer.outputColorSpace=THREE.SRGBColorSpace;
       homeRenderer.toneMapping=THREE.ACESFilmicToneMapping;
-      homeRenderer.toneMappingExposure=1.18;
+      homeRenderer.toneMappingExposure=1.28;
 
       homeScene=new THREE.Scene();
       homeScene.fog=new THREE.Fog(0xc68661,16,70);
-      homeCamera=new THREE.PerspectiveCamera(44,1,.1,120);
-      homeCamera.position.set(4.65,2.24,7.35);
-      homeCamera.lookAt(0,.68,.10);
+      // Hero composition: keep the whole car visible and leave breathing room for the UI.
+      homeCamera=new THREE.PerspectiveCamera(47,1,.1,140);
+      homeCamera.position.set(5.55,2.95,11.85);
+      homeCamera.lookAt(-.10,.72,-.85);
 
-      homeScene.add(new THREE.HemisphereLight(0xcde1f0,0x34291f,2.15));
-      const key=new THREE.DirectionalLight(0xffcf96,4.4);
-      key.position.set(-5,9,6); homeScene.add(key);
-      const rim=new THREE.DirectionalLight(0x74afff,1.45);
-      rim.position.set(6,4,-7); homeScene.add(rim);
+      homeScene.add(new THREE.HemisphereLight(0xd8e7f2,0x3b2c22,2.75));
+      const key=new THREE.DirectionalLight(0xffd6a3,5.8);
+      key.position.set(-5,10,7); homeScene.add(key);
+      const rim=new THREE.DirectionalLight(0x82b8ff,2.1);
+      rim.position.set(6,5,-7); homeScene.add(rim);
+      const fill=new THREE.DirectionalLight(0xffead0,2.35);
+      fill.position.set(2.5,3.2,9.5); homeScene.add(fill);
 
       const roadMat=new THREE.MeshStandardMaterial({color:0x24272b,roughness:.92,metalness:.02});
       homeRoad=new THREE.Mesh(new THREE.PlaneGeometry(12.5,55),roadMat);
@@ -1080,9 +1083,12 @@
       homeCar.traverse((o)=>{ if(o.material?.dispose) o.material.dispose(); });
     }
     const spec=carSpecs[state.car];
-    homeCar=makeGameCar(spec.type,spec.color,1.10);
-    homeCar.position.set(.3,.02,.8);
-    homeCar.rotation.y=-.34;
+    // Main menu car is deliberately smaller than the garage model:
+    // it must read as a hero object, not cover the entire interface.
+    homeCar=makeGameCar(spec.type,spec.color,.80);
+    homeCar.position.set(-.08,.02,-.45);
+    homeCar.rotation.y=-.52;
+    homeCar.userData.heroYaw=-.52;
     homeScene.add(homeCar);
   }
 
@@ -1092,25 +1098,25 @@
     if(track==='Ночной Симферополь'){
       homeScene.background=new THREE.Color(0x07101b);
       homeScene.fog=new THREE.Fog(0x07101b,12,58);
-      homeRenderer.toneMappingExposure=1.35;
+      homeRenderer.toneMappingExposure=1.46;
       homeSun.visible=false;
       homeRoad.material.color.set(0x111418);
     } else if(track==='Южный берег'){
       homeScene.background=new THREE.Color(0xd48f6b);
       homeScene.fog=new THREE.Fog(0xd48f6b,18,72);
-      homeRenderer.toneMappingExposure=1.18;
+      homeRenderer.toneMappingExposure=1.28;
       homeSun.visible=true;
       homeRoad.material.color.set(0x28292b);
     } else if(track==='Морской маршрут'){
       homeScene.background=new THREE.Color(0xd98f67);
       homeScene.fog=new THREE.Fog(0xd98f67,18,74);
-      homeRenderer.toneMappingExposure=1.20;
+      homeRenderer.toneMappingExposure=1.30;
       homeSun.visible=true;
       homeRoad.material.color.set(0x292a2d);
     } else {
       homeScene.background=new THREE.Color(0xc88967);
       homeScene.fog=new THREE.Fog(0xc88967,18,70);
-      homeRenderer.toneMappingExposure=1.18;
+      homeRenderer.toneMappingExposure=1.28;
       homeSun.visible=true;
       homeRoad.material.color.set(0x282a2d);
     }
@@ -1130,8 +1136,9 @@
       const dt=Math.min(.04,(now-homeLast)/1000||.016); homeLast=now;
       resizeHome3D();
       if(homeCar){
-        homeCar.rotation.y += dt*.075;
-        homeCar.position.y=.025+Math.sin(now*.0014)*.012;
+        const baseYaw=homeCar.userData.heroYaw ?? -.52;
+        homeCar.rotation.y=baseYaw+Math.sin(now*.00033)*.025;
+        homeCar.position.y=.025+Math.sin(now*.00125)*.009;
       }
       if(homeRoadMarks){
         homeRoadMarks.position.z=(now*.006)%5.5;
