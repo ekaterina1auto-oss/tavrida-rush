@@ -1327,3 +1327,273 @@ body{
   background:linear-gradient(180deg,rgba(29,36,46,.96),rgba(14,19,27,.98))!important;
   border-color:rgba(255,255,255,.15)!important;
 }
+
+
+/* === v1.2 HOME REBUILD 20260919 === */
+.screen-home{
+  background:#080b10!important;
+}
+.screen-home .home-bg{
+  filter:brightness(.88) saturate(1.12) contrast(1.08)!important;
+  transform:none!important;
+  animation:none!important;
+  object-position:center center!important;
+  image-rendering:auto;
+}
+.home-atmosphere{
+  background:
+    radial-gradient(circle at 82% 35%,rgba(255,184,87,.15),transparent 24%),
+    linear-gradient(180deg,rgba(8,12,18,.08),transparent 46%,rgba(5,8,12,.16))!important;
+  mix-blend-mode:screen!important;
+}
+.home-atmosphere:before,
+.home-atmosphere:after{display:none!important}
+.home-vignette{
+  background:
+    linear-gradient(180deg,rgba(4,7,11,.24) 0%,rgba(4,7,11,.04) 19%,transparent 44%,rgba(4,7,11,.08) 64%,rgba(3,5,8,.72) 100%),
+    radial-gradient(ellipse at center,transparent 48%,rgba(0,0,0,.24) 100%)!important;
+}
+.home-ui{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+.home-topbar{
+  left:calc(var(--safe-left) + 12px)!important;
+  right:calc(var(--safe-right) + 12px)!important;
+  top:calc(var(--safe-top) + 10px)!important;
+  grid-template-columns:minmax(0,1.48fr) minmax(77px,.82fr) minmax(70px,.74fr)!important;
+  gap:7px!important;
+  align-items:stretch!important;
+}
+.pilot-card,.wallet{
+  background:linear-gradient(180deg,rgba(28,34,44,.82),rgba(10,14,20,.88))!important;
+  border:1px solid rgba(255,255,255,.22)!important;
+  box-shadow:0 8px 22px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.08)!important;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+.pilot-card{
+  grid-template-columns:58px minmax(0,1fr)!important;
+  min-height:62px!important;
+  border-radius:14px!important;
+}
+.pilot-avatar{
+  background:radial-gradient(circle at 45% 28%,#3b434e,#0a0d12 72%)!important;
+  border-right:1px solid rgba(255,255,255,.16)!important;
+}
+.pilot-avatar svg{width:38px;height:45px;filter:drop-shadow(0 3px 5px rgba(0,0,0,.35))}
+.pilot-card>div:last-child{padding:8px 8px 6px!important}
+.pilot-card b{font-size:13px!important;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pilot-card span{font-size:8px!important;letter-spacing:.03em}
+.pilot-card i{height:5px!important;margin-top:6px!important;background:rgba(255,255,255,.18)!important}
+.pilot-card i u{width:61%!important;background:linear-gradient(90deg,#f6bb18,#ffd94a)!important}
+.wallet{
+  min-height:52px!important;
+  margin-top:5px!important;
+  border-radius:13px!important;
+  grid-template-columns:24px minmax(0,1fr) 29px!important;
+  padding-left:6px!important;
+}
+.wallet .coin-icon{
+  width:23px;height:23px;border-radius:50%;display:grid;place-items:center;
+  color:#161a20!important;background:linear-gradient(145deg,#ffe56b,#c98b00)!important;
+  border:2px solid #ffc928;font-size:7px!important;font-weight:1000;
+  box-shadow:inset 0 0 0 2px rgba(0,0,0,.18);
+}
+.wallet .gem-icon{font-size:19px!important;color:#c64cff!important;filter:drop-shadow(0 2px 4px rgba(151,57,234,.35))}
+.wallet b{font-size:13px!important;letter-spacing:.02em}
+.wallet button{font-size:19px!important}
+.home-logo{
+  left:11%!important;
+  right:11%!important;
+  top:12.6%!important;
+  height:auto!important;
+  transform:skew(-8deg)!important;
+  text-align:center!important;
+  text-shadow:0 7px 24px rgba(0,0,0,.62)!important;
+}
+.home-logo strong{
+  font-size:clamp(42px,12.6vw,61px)!important;
+  line-height:.82!important;
+  letter-spacing:-.075em!important;
+  -webkit-text-stroke:.5px rgba(255,255,255,.34);
+}
+.home-logo em{
+  position:relative;
+  font-size:clamp(46px,13.4vw,66px)!important;
+  line-height:.78!important;
+  margin-left:15%!important;
+  color:#f2ad06!important;
+  text-shadow:0 6px 18px rgba(0,0,0,.42)!important;
+}
+.home-logo em:before,
+.home-logo em:after{
+  content:"";position:absolute;height:4px;background:#f2ad06;transform:skew(-28deg);border-radius:3px;
+}
+.home-logo em:before{width:56px;left:-42px;top:14px}
+.home-logo em:after{width:32px;right:-15px;bottom:9px}
+.home-logo small{
+  transform:skew(8deg)!important;
+  font-size:7px!important;
+  letter-spacing:.35em!important;
+  margin-top:17px!important;
+  color:rgba(255,255,255,.90)!important;
+  white-space:nowrap;
+}
+.home-sign{
+  left:10.5%!important;
+  right:10.5%!important;
+  top:27.2%!important;
+  min-height:92px!important;
+  border:2px solid rgba(235,245,241,.78)!important;
+  border-radius:5px!important;
+  grid-template-columns:1.06fr .94fr!important;
+  background:linear-gradient(180deg,rgba(20,103,77,.95),rgba(7,66,50,.97))!important;
+  box-shadow:0 14px 28px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.10)!important;
+  transform:perspective(700px) rotateX(1deg) rotateZ(1.2deg)!important;
+  overflow:hidden;
+}
+.home-sign>div{padding:8px 10px!important;gap:2px!important}
+.home-sign>div+div{border-left:1px solid rgba(255,255,255,.42)!important}
+.home-sign .route-code{font-size:11px!important;letter-spacing:.02em}
+.home-sign .route-row{font-size:10px!important;line-height:1.18;display:flex;justify-content:space-between;gap:8px}
+.home-sign .route-kicker{font-size:8px!important;letter-spacing:.08em;color:rgba(255,255,255,.85)}
+.home-sign .route-promise{font-size:11px!important;line-height:1.2;margin-top:2px}
+.home-sign .route-arrow{position:absolute;right:10px;bottom:7px;font-size:21px;font-weight:900;transform:rotate(-2deg)}
+.home-music{
+  right:calc(var(--safe-right) + 15px)!important;
+  top:22.6%!important;
+  width:42px!important;height:42px!important;border-radius:13px!important;
+  background:linear-gradient(180deg,rgba(27,33,42,.88),rgba(10,14,20,.92))!important;
+  backdrop-filter:blur(8px);
+}
+.home-stage-meta{
+  position:absolute;
+  left:calc(var(--safe-left) + 14px);
+  right:calc(var(--safe-right) + 14px);
+  bottom:calc(var(--safe-bottom) + 205px);
+  min-height:82px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:10px;
+  z-index:6;
+  pointer-events:none;
+}
+.home-route-pill{
+  width:min(45%,168px);
+  padding:8px 10px;
+  border-radius:12px;
+  background:linear-gradient(180deg,rgba(13,18,25,.60),rgba(6,10,15,.82));
+  border:1px solid rgba(255,255,255,.14);
+  backdrop-filter:blur(7px);
+  box-shadow:0 10px 24px rgba(0,0,0,.24);
+}
+.home-route-pill span{
+  display:block;font-size:7px;font-weight:900;letter-spacing:.14em;color:#aeb7c0
+}
+.home-route-pill b{
+  display:block;margin-top:3px;font-size:11px;font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+.home-car-card{
+  width:min(44%,174px);
+  min-height:78px;
+  padding:7px 8px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  grid-template-rows:auto 1fr auto;
+  gap:2px 6px;
+  border-radius:13px;
+  background:linear-gradient(150deg,rgba(24,30,38,.74),rgba(8,12,17,.88));
+  border:1px solid rgba(255,255,255,.17);
+  backdrop-filter:blur(8px);
+  box-shadow:0 12px 27px rgba(0,0,0,.28);
+}
+.home-car-card .car-caption{
+  grid-column:1/3;font-size:7px;font-weight:900;letter-spacing:.08em;color:#e6e9ec
+}
+.home-car-thumb{
+  grid-column:1/3;position:relative;height:35px;overflow:hidden;
+}
+.home-car-thumb svg{position:absolute;right:4px;bottom:-1px;width:96px;height:40px;filter:drop-shadow(0 7px 6px rgba(0,0,0,.55))}
+.home-car-name{
+  align-self:end;font-size:10px!important;line-height:1;font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+.home-class{
+  align-self:end;display:flex;gap:4px;align-items:center;font-size:9px;font-weight:1000
+}
+.home-class i{
+  display:grid;place-items:center;width:21px;height:20px;border-radius:5px;background:#f8bd11;color:#111820;font-style:italic;font-size:11px
+}
+.home-class b{font-size:10px}
+.home-actions{
+  left:calc(var(--safe-left) + 14px)!important;
+  right:calc(var(--safe-right) + 14px)!important;
+  bottom:calc(var(--safe-bottom) + 11px)!important;
+}
+.home-play{
+  height:70px!important;
+  border-radius:15px!important;
+  grid-template-columns:60px 1fr 48px!important;
+  background:
+    linear-gradient(180deg,#ffda39,#e7a708)!important;
+  border:1px solid #ffe57a!important;
+  box-shadow:0 11px 28px rgba(0,0,0,.42),0 0 26px rgba(255,196,0,.12),inset 0 1px 0 rgba(255,255,255,.52)!important;
+}
+.home-play span{font-size:30px!important;filter:drop-shadow(0 2px 0 rgba(255,255,255,.16))}
+.home-play b{font-size:25px!important;letter-spacing:.01em}
+.home-play i{font-size:32px!important}
+.home-nav{gap:7px!important;margin-top:8px!important}
+.home-nav button,.home-settings{
+  background:linear-gradient(180deg,rgba(31,38,48,.91),rgba(12,17,24,.96))!important;
+  border:1px solid rgba(255,255,255,.17)!important;
+  backdrop-filter:blur(8px);
+  box-shadow:0 7px 16px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.05)!important;
+}
+.home-nav button{
+  height:57px!important;
+  grid-template-columns:31px 1fr 15px!important;
+  padding:0 7px!important;
+}
+.home-nav .menu-icon,.home-settings .menu-icon{
+  width:26px;height:26px;display:grid;place-items:center
+}
+.home-nav .menu-icon svg,.home-settings .menu-icon svg{width:25px;height:25px;stroke:#f0f3f5;fill:none;stroke-width:1.8}
+.home-nav b,.home-settings b{font-size:10px!important;letter-spacing:.02em}
+.home-settings{
+  width:46%!important;
+  height:43px!important;
+  margin:9px auto 0!important;
+  grid-template-columns:31px 1fr 16px!important;
+}
+.home-settings .menu-icon svg{width:23px;height:23px}
+.build-chip{display:none!important}
+
+@media(max-width:380px){
+  .home-topbar{grid-template-columns:minmax(0,1.42fr) minmax(70px,.78fr) minmax(65px,.70fr)!important;gap:5px!important}
+  .pilot-card{grid-template-columns:50px minmax(0,1fr)!important}
+  .pilot-card b{font-size:11px!important}
+  .wallet b{font-size:11px!important}
+  .home-logo{top:13.1%!important;left:10%!important;right:10%!important}
+  .home-logo small{font-size:6px!important;letter-spacing:.28em!important}
+  .home-sign{left:8.5%!important;right:8.5%!important;top:28%!important}
+  .home-sign .route-row{font-size:9px!important}
+  .home-sign .route-promise{font-size:10px!important}
+  .home-stage-meta{left:10px;right:10px;gap:7px}
+  .home-route-pill{width:43%;padding:7px 8px}
+  .home-car-card{width:47%;padding:6px 7px}
+  .home-play b{font-size:23px!important}
+}
+@media(max-height:720px){
+  .home-logo{top:11.6%!important}
+  .home-sign{top:25.5%!important;min-height:82px!important}
+  .home-sign>div{padding:6px 8px!important}
+  .home-stage-meta{bottom:calc(var(--safe-bottom) + 184px);min-height:70px}
+  .home-car-card{min-height:68px}
+  .home-car-thumb{height:28px}
+  .home-car-thumb svg{width:82px;height:34px}
+  .home-play{height:61px!important}
+  .home-nav button{height:49px!important}
+  .home-settings{height:38px!important;margin-top:7px!important}
+}
+@media(min-width:600px){
+  .home-topbar,.home-actions,.home-stage-meta{max-width:520px;margin-left:auto;margin-right:auto}
+  .home-sign{left:50%!important;right:auto!important;width:360px;transform:translateX(-50%) perspective(700px) rotateX(1deg) rotateZ(1.2deg)!important}
+}
