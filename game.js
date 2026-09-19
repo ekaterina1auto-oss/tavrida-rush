@@ -539,7 +539,7 @@
 
   let player = makeCar('bmw', carSpecs['BMW M340i'].color, .72);
   player.position.set(0, .02, 3.4);
-  player.rotation.y = Math.PI;
+  player.rotation.y = 0;
   scene.add(player);
   let playerX = 0;
   let playerTargetX = 0;
@@ -553,7 +553,7 @@
     const car = makeCar(type, colors[(Math.random() * colors.length) | 0], .67);
     const lane = (Math.random() * 3) | 0;
     car.position.set(laneX[lane], .02, z);
-    car.rotation.y = Math.PI;
+    car.rotation.y = 0;
     car.userData = {
       lane,
       speed: 65 + Math.random() * 70,
@@ -583,7 +583,7 @@
     const spec = carSpecs[state.car];
     player = makeCar(spec.type, spec.color, .72);
     player.position.set(laneX[state.lane], .02, 3.4);
-    player.rotation.y = Math.PI;
+    player.rotation.y = 0;
     scene.add(player);
   }
 
