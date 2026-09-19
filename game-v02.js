@@ -3,9 +3,10 @@
   const one = (s) => app.querySelector(s);
   const all = (s) => Array.from(app.querySelectorAll(s));
 
-  let THREE;
+  let THREE, GLTFLoader;
   try {
-    THREE = await import('https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js');
+    THREE = await import('https://esm.sh/three@0.180.0');
+    ({ GLTFLoader } = await import('https://esm.sh/three@0.180.0/examples/jsm/loaders/GLTFLoader.js'));
   } catch (err) {
     console.error(err);
     const toast = one('#toast');
@@ -197,6 +198,109 @@
     return group;
   }
 
+
+  // ---------- HIGH DETAIL CAR ASSET ----------
+  let detailedCarTemplate = null;
+
+  function colorizeDetailedCar(root, color, type) {
+    const blocked = /glass|window|tire|tyre|wheel|rim|chrome|light|lamp|interior|black|rubber/i;
+    const preferred = /paint|body|exterior|carpaint|coat|shell/i;
+    root.traverse((o) => {
+      if (!o.isMesh) return;
+      o.castShadow = true;
+      o.receiveShadow = true;
+      if (!o.material) return;
+      const mats = Array.isArray(o.material) ? o.material : [o.material];
+      const cloned = mats.map((mat) => {
+        const m = mat.clone();
+        const n = (m.name || '') + ' ' + (o.name || '');
+        const paintCandidate = preferred.test(n) || (!blocked.test(n) && m.color && (m.metalness ?? 0) > .15 && (m.roughness ?? .5) < .65);
+        if (paintCandidate && m.color) {
+          const target = new THREE.Color(color);
+          m.color.lerp(target, type === 'bmw' ? .52 : .72);
+          if ('clearcoat' in m) m.clearcoat = Math.max(m.clearcoat || 0, .8);
+          m.roughness = Math.min(m.roughness ?? .4, .32);
+        }
+        return m;
+      });
+      o.material = Array.isArray(o.material) ? cloned : cloned[0];
+    });
+  }
+
+  async function loadDetailedCarAsset() {
+    const loader = new GLTFLoader();
+    const gltf = await loader.loadAsync('assets/car-concept.glb');
+    const root = gltf.scene;
+    const remove = [];
+    root.traverse((o) => {
+      if (o.isCamera || o.isLight) remove.push(o);
+    });
+    remove.forEach((o) => o.parent?.remove(o));
+
+    let box = new THREE.Box3().setFromObject(root);
+    let size = box.getSize(new THREE.Vector3());
+
+    // Keep the longest horizontal dimension along the road axis.
+    if (size.x > size.z) {
+      root.rotation.y = Math.PI / 2;
+      root.updateMatrixWorld(true);
+      box = new THREE.Box3().setFromObject(root);
+      size = box.getSize(new THREE.Vector3());
+    }
+
+    const longest = Math.max(size.x, size.z);
+    const s = 4.35 / Math.max(.001, longest);
+    root.scale.multiplyScalar(s);
+    root.updateMatrixWorld(true);
+
+    box = new THREE.Box3().setFromObject(root);
+    const center = box.getCenter(new THREE.Vector3());
+    root.position.x -= center.x;
+    root.position.z -= center.z;
+    root.position.y -= box.min.y;
+    root.updateMatrixWorld(true);
+
+    detailedCarTemplate = root;
+    return root;
+  }
+
+  function makeDetailedCar(type, color, scale = 1) {
+    const wrapper = new THREE.Group();
+    const model = detailedCarTemplate.clone(true);
+    colorizeDetailedCar(model, color, type);
+    wrapper.add(model);
+
+    if (type === 'vesta') {
+      const dark = new THREE.MeshStandardMaterial({ color: 0x08090c, metalness: .35, roughness: .35 });
+      const wing = new THREE.Mesh(new THREE.BoxGeometry(2.2, .10, .34), dark);
+      wing.position.set(0, 1.42, 1.63);
+      const p1 = new THREE.Mesh(new THREE.BoxGeometry(.08, .45, .08), dark);
+      const p2 = p1.clone();
+      p1.position.set(-.67, 1.20, 1.48);
+      p2.position.set(.67, 1.20, 1.48);
+      wrapper.add(wing, p1, p2);
+      const glow = new THREE.PointLight(0xff2418, 12, 7, 2);
+      glow.position.set(0, .18, 0);
+      glow.name = 'underGlow';
+      wrapper.add(glow);
+      const disc = new THREE.Mesh(
+        new THREE.CircleGeometry(1.6, 32),
+        new THREE.MeshBasicMaterial({ color: 0xff2418, transparent: true, opacity: .18, depthWrite: false })
+      );
+      disc.rotation.x = -Math.PI / 2;
+      disc.position.y = .03;
+      wrapper.add(disc);
+    }
+
+    wrapper.scale.setScalar(scale);
+    wrapper.name = 'hd-car-' + type;
+    return wrapper;
+  }
+
+  function makeGameCar(type, color, scale = 1) {
+    return detailedCarTemplate ? makeDetailedCar(type, color, scale) : makeCar(type, color, scale);
+  }
+
   // ---------- GARAGE 3D ----------
   const garageCanvas = one('#garage3d');
   const garageRenderer = new THREE.WebGLRenderer({ canvas: garageCanvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
@@ -245,7 +349,7 @@
   garageBackdrop.position.set(0, 4.2, -5.2);
   garageScene.add(garageBackdrop);
 
-  let garageCar = makeCar('bmw', carSpecs['BMW M340i'].color, 1.0);
+  let garageCar = makeGameCar('bmw', carSpecs['BMW M340i'].color, 1.0);
   garageCar.rotation.y = -0.6;
   garageScene.add(garageCar);
   let garageDrag = false;
@@ -259,7 +363,7 @@
       if (o.material && o.material.dispose) o.material.dispose();
     });
     const spec = carSpecs[state.car];
-    garageCar = makeCar(spec.type, spec.color, 1.0);
+    garageCar = makeGameCar(spec.type, spec.color, 1.0);
     garageCar.rotation.y = -0.6;
     garageScene.add(garageCar);
   }
@@ -537,7 +641,7 @@
     roadSegments.push(segment);
   }
 
-  let player = makeCar('bmw', carSpecs['BMW M340i'].color, .72);
+  let player = makeGameCar('bmw', carSpecs['BMW M340i'].color, .72);
   player.position.set(0, .02, 3.4);
   player.rotation.y = 0;
   scene.add(player);
@@ -550,7 +654,7 @@
     const types = ['bmw', 'amg', 'porsche'];
     const type = types[(Math.random() * types.length) | 0];
     const colors = [0xc9c9c9, 0x37485a, 0x7f252b, 0x15181c, 0xa99d83, 0x2f5b76];
-    const car = makeCar(type, colors[(Math.random() * colors.length) | 0], .67);
+    const car = makeGameCar(type, colors[(Math.random() * colors.length) | 0], .67);
     const lane = (Math.random() * 3) | 0;
     car.position.set(laneX[lane], .02, z);
     car.rotation.y = 0;
@@ -581,7 +685,7 @@
       if (o.material && o.material.dispose) o.material.dispose();
     });
     const spec = carSpecs[state.car];
-    player = makeCar(spec.type, spec.color, .72);
+    player = makeGameCar(spec.type, spec.color, .72);
     player.position.set(laneX[state.lane], .02, 3.4);
     player.rotation.y = 0;
     scene.add(player);
@@ -820,4 +924,16 @@
 
   resizeGarage();
   resizeRace();
+
+  // Load the detailed model after the lightweight scene is already interactive.
+  loadDetailedCarAsset().then(() => {
+    rebuildGarageCar();
+    rebuildPlayer();
+    traffic.forEach((car) => scene.remove(car));
+    traffic.length = 0;
+    for (let i = 0; i < 6; i++) spawnTrafficCar(-55 - i * 25 - Math.random() * 15);
+    toast('HD-модели автомобилей загружены');
+  }).catch((err) => {
+    console.warn('Detailed car model fallback:', err);
+  });
 })();
