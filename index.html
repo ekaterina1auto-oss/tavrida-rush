@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>Tavrida Rush — Alpha</title>
   <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="stylesheet" href="styles-v03.css?v=20260919-0848" />
+  <link rel="stylesheet" href="styles-v03.css?v=20260919-0851" />
 </head>
 <body>
   <main id="app" class="app-shell" aria-live="polite">
@@ -112,7 +112,17 @@
         <button id="rightBtn" class="control">→</button>
       </div>
       <div id="gameOver" class="game-over hidden">
-        <div class="glass over-card"><h2>АВАРИЯ</h2><p id="gameOverResult"></p><button id="retryBtn" class="cta">ЕЩЁ РАЗ</button><button class="secondary" data-screen="home">В МЕНЮ</button></div>
+        <div class="glass over-card">
+          <h2>АВАРИЯ</h2>
+          <p id="gameOverResult"></p>
+          <div class="upgrade-center-card">
+            <b>ЦЕНТР АВТОАПГРЕЙДА</b>
+            <span>➡️ г. Симферополь, ул. Воровского, 19</span>
+            <a href="tel:+79780465881">+7 (978) 046-58-81</a>
+          </div>
+          <button id="retryBtn" class="cta">ЕЩЁ РАЗ</button>
+          <button class="secondary" data-screen="home">В МЕНЮ</button>
+        </div>
       </div>
     </section>
 
