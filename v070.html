@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover,interactive-widget=resizes-content" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Tavrida Rush — Alpha</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="stylesheet" href="styles-v070.css?v=20260919-1115" />
+</head>
+<body>
+  <main id="app" class="app-shell" aria-live="polite">
+    <section id="screen-home" class="screen is-active screen-home">
+      <img class="screen-art home-bg" src="assets/menu.jpg" alt="Tavrida Rush" />
+      <div class="home-vignette"></div>
+      <div class="home-ui">
+        <div class="home-topbar">
+          <div class="pilot-card">
+            <div class="pilot-avatar">82</div>
+            <div><b>Гонщик_82</b><span>УРОВЕНЬ 12</span><i><u></u></i></div>
+          </div>
+          <div class="wallet"><span>CR</span><b>12 480</b><button>+</button></div>
+          <div class="wallet gem"><span>◆</span><b>350</b><button>+</button></div>
+        </div>
+        <div class="home-logo"><strong>TAVRIDA</strong><em>RUSH</em><small>КРЫМ ВСЕГДА В ДВИЖЕНИИ</small></div>
+        <div class="home-sign">
+          <div><b>A-291</b><span>Симферополь&nbsp;&nbsp;&nbsp;48</span><span>Ялта&nbsp;&nbsp;&nbsp;118</span><span>Севастополь&nbsp;&nbsp;&nbsp;82</span></div>
+          <div><span>КРЫМ</span><b>БЛИЖЕ,<br>ЧЕМ ТЫ ДУМАЕШЬ&nbsp;↗</b></div>
+        </div>
+        <div class="home-actions">
+          <button class="home-play" data-screen="race"><span>▶</span><b>ИГРАТЬ</b><i>»</i></button>
+          <div class="home-nav">
+            <button data-screen="garage"><span>🚘</span><b>ГАРАЖ</b><i>›</i></button>
+            <button data-screen="tracks"><span>🛣</span><b>ТРАССЫ</b><i>›</i></button>
+            <button id="recordsBtn"><span>🏆</span><b>РЕКОРДЫ</b><i>›</i></button>
+          </div>
+          <button class="home-settings" id="settingsBtn"><span>⚙</span><b>НАСТРОЙКИ</b><i>›</i></button>
+        </div>
+        <div class="build-chip">v0.7 HERO VISUAL</div>
+      </div>
+    </section>
+
+    <section id="screen-tracks" class="screen screen-panel">
+      <img class="screen-art dim zoomed" src="assets/menu.jpg" alt="Выбор трассы" />
+      <header class="topbar">
+        <button class="back" data-screen="home">‹</button>
+        <div><b>ВЫБОР ТРАССЫ</b><span id="trackCaption">Таврида</span></div>
+        <div class="credits">CR 12 480</div>
+      </header>
+      <div class="track-list glass">
+        <button class="track-card selected" data-track="Таврида">ТАВРИДА <small>A-291 · мосты · ATAN / TES</small><em>+50%</em></button>
+        <button class="track-card" data-track="Южный берег">ЮЖНЫЙ БЕРЕГ <small>серпантин · море · скалы</small><em>+70%</em></button>
+        <button class="track-card" data-track="Ночной Симферополь">НОЧНОЙ СИМФЕРОПОЛЬ <small>городской поток · ночь</small><em>+60%</em></button>
+        <button class="track-card" data-track="Морской маршрут">МОРСКОЙ МАРШРУТ <small>побережье · закат</small><em>+40%</em></button>
+        <button class="cta" data-screen="home">ВЫБРАТЬ ТРАССУ</button>
+      </div>
+    </section>
+
+    <section id="screen-garage" class="screen screen-panel">
+      <img class="screen-art dim garage-bg" src="assets/menu.jpg" alt="Гараж Tavrida Rush" />
+      <header class="topbar">
+        <button class="back" data-screen="home">‹</button>
+        <div><b>ГАРАЖ</b><span id="garageSubtitle">BMW M340i</span></div>
+        <div class="credits">CR 12 480</div>
+      </header>
+      <div class="garage-showcase garage-showcase-3d">
+        <canvas id="garage3d" aria-label="3D автомобиль в гараже"></canvas>
+        <div id="garageFx" class="garage-fx"></div>
+        <div class="garage-hint">Проведи пальцем, чтобы осмотреть автомобиль</div>
+      </div>
+      <div class="garage-sheet glass">
+        <div class="garage-main">
+          <div><b id="garageName">BMW M340i</b><span id="garageClass">S · 642 · Premium</span></div>
+        </div>
+        <div class="garage-grid">
+          <button class="car-card" data-car="Lada Vesta Street Beast" data-type="vesta" data-class="C · 412" data-speed="6.2" data-accel="6.8" data-handling="7.4">LADA VESTA<small>Street Beast 😈</small></button>
+          <button class="car-card selected" data-car="BMW M340i" data-type="bmw" data-class="S · 642" data-speed="8.3" data-accel="8.1" data-handling="7.9">BMW M340i<small>Premium</small></button>
+          <button class="car-card" data-car="Mercedes-AMG C 63 S" data-type="amg" data-class="S · 655" data-speed="8.6" data-accel="8.8" data-handling="7.7">AMG C63 S<small>V8 Power</small></button>
+          <button class="car-card" data-car="Porsche 911 Carrera S" data-type="porsche" data-class="S+ · 688" data-speed="9.0" data-accel="8.8" data-handling="9.3">PORSCHE 911<small>Legendary</small></button>
+          <button class="car-card locked" type="button">NISSAN GT-R<small>🔒 уровень 20</small></button>
+          <button class="car-card locked" type="button">HURACÁN<small>🔒 уровень 30</small></button>
+        </div>
+        <div class="stats">
+          <div>СКОРОСТЬ <b id="statSpeed">8.3</b><i><span id="barSpeed" style="width:83%"></span></i></div>
+          <div>РАЗГОН <b id="statAccel">8.1</b><i><span id="barAccel" style="width:81%"></span></i></div>
+          <div>УПРАВЛЕНИЕ <b id="statHandling">7.9</b><i><span id="barHandling" style="width:79%"></span></i></div>
+        </div>
+        <div class="garage-actions"><button id="effectBtn" class="secondary">СПЕЦЭФФЕКТ</button><button class="cta" data-screen="race">В ГОНКУ</button></div>
+      </div>
+    </section>
+
+    <section id="screen-race" class="screen screen-race">
+      <div class="race-viewport" id="raceViewport">
+        <canvas id="race3d" aria-label="3D заезд Tavrida Rush"></canvas>
+        <div class="race-cinematic-shade"></div>
+        <div class="hero-hud">
+          <button id="pauseBtn" class="hero-pause" aria-label="Пауза"><span></span><span></span></button>
+          <div class="race-brand" aria-label="Tavrida Rush">
+            <strong>TAVRIDA</strong>
+            <em>RUSH</em>
+            <small>КРЫМ ВСЕГДА В ДВИЖЕНИИ</small>
+          </div>
+          <div class="hero-score-panel">
+            <div class="hero-score-main">
+              <div><span>СЧЁТ</span><b id="hudScore">0</b></div>
+              <i></i>
+              <div><span>КОМБО</span><b>×<u id="hudCombo">1</u></b></div>
+            </div>
+            <div class="hero-distance"><span>ПРОЙДЕНО</span><b id="hudDistance">0.0</b><small>КМ</small></div>
+          </div>
+        </div>
+        <div id="raceLabel" class="race-label hero-race-label">BMW M340i · Таврида</div>
+        <div class="hero-speed-dial" id="speedDial" style="--speed-angle:135deg">
+          <div class="hero-speed-ring"></div>
+          <div class="hero-speed-value"><b id="hudSpeed">154</b><span>КМ/Ч</span><i>D</i></div>
+        </div>
+        <div id="eventBanner" class="event-banner">NEAR MISS ×2</div>
+        <div class="speed-vignette" id="speedVignette"></div>
+      </div>
+      <div class="controls driving-controls" aria-label="Управление автомобилем">
+        <div class="steer-cluster" aria-label="Рулевое управление">
+          <button id="leftBtn" class="control steer-btn steer-left" aria-label="Повернуть налево">
+            <span class="steer-chevron" aria-hidden="true"></span>
+          </button>
+          <button id="rightBtn" class="control steer-btn steer-right" aria-label="Повернуть направо">
+            <span class="steer-chevron" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="pedal-cluster" aria-label="Педали">
+          <button id="brakeBtn" class="control pedal-btn brake-pedal" aria-label="Тормоз">
+            <span class="pedal-face brake-face" aria-hidden="true"><i></i><i></i><i></i></span>
+          </button>
+          <button id="gasBtn" class="control pedal-btn gas gas-pedal" aria-label="Газ">
+            <span class="pedal-face gas-face" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          </button>
+        </div>
+      </div>
+      <div id="gameOver" class="game-over hidden">
+        <div class="glass over-card result-card">
+          <div class="result-kicker">TAVRIDA RUSH</div>
+          <h2>ЗАЕЗД ЗАВЕРШЁН</h2>
+          <p id="gameOverResult" class="result-summary"></p>
+
+          <div class="result-stats">
+            <div><span>МАКС. СКОРОСТЬ</span><b id="resultSpeed">0</b><small>км/ч</small></div>
+            <div><span>NEAR MISS</span><b id="resultNear">0</b><small>раз</small></div>
+            <div><span>ДИСТАНЦИЯ</span><b id="resultDistance">0.0</b><small>км</small></div>
+          </div>
+
+          <div class="upgrade-center-card native-partner-card">
+            <div class="partner-topline"><span>ПАРТНЁР TAVRIDA RUSH</span><i>82</i></div>
+            <b>Центр Автоапгрейда</b>
+            <p>Прокачай не только игру — прокачай и свой автомобиль.</p>
+            <div class="partner-location">Симферополь · ул. Воровского, 19</div>
+            <div class="partner-actions">
+              <a class="partner-action call" href="tel:+79780465881">☎ Позвонить</a>
+              <a class="partner-action route" href="https://yandex.ru/maps/?text=%D0%A1%D0%B8%D0%BC%D1%84%D0%B5%D1%80%D0%BE%D0%BF%D0%BE%D0%BB%D1%8C%2C%20%D1%83%D0%BB.%20%D0%92%D0%BE%D1%80%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%2C%2019" target="_blank" rel="noopener">⌖ Маршрут</a>
+            </div>
+            <a class="partner-phone" href="tel:+79780465881">+7 (978) 046-58-81</a>
+          </div>
+
+          <button id="retryBtn" class="cta result-retry">ПОВТОРИТЬ ЗАЕЗД</button>
+          <button class="secondary result-menu" data-screen="home">В МЕНЮ</button>
+        </div>
+      </div>
+    </section>
+
+    <div id="toast" class="toast"></div>
+  </main>
+  <script type="module" src="game-v070.js?v=20260919-1115"></script>
+</body>
+</html>
