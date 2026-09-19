@@ -1449,6 +1449,62 @@
     return group;
   }
 
+  const routeSignBoards = [];
+
+  const TRACK_PROFILES = {
+    'Таврида': {
+      sign:['A-291   СИМФЕРОПОЛЬ 48','БЕЛОГОРСК 112      ↑','ФЕОДОСИЯ 189   КЕРЧЬ 304 →'],
+      curveAmp:.28, curveFreq:.010, curve2:.12,
+      sea:false, city:true, castle:false, viaduct:true,
+      ground:0xa38657, fog:0xb88768
+    },
+    'Южный берег': {
+      sign:['ЯЛТА 18          ↑','АЛУШТА 47','СЕВАСТОПОЛЬ 82   ↗'],
+      curveAmp:2.05, curveFreq:.022, curve2:.72,
+      sea:true, city:true, castle:true, viaduct:true,
+      ground:0x756448, fog:0xc98768
+    },
+    'Ночной Симферополь': {
+      sign:['СИМФЕРОПОЛЬ ЦЕНТР ↑','АЭРОПОРТ 16','ОБЪЕЗДНАЯ 7      →'],
+      curveAmp:.82, curveFreq:.015, curve2:.24,
+      sea:false, city:true, castle:false, viaduct:false,
+      ground:0x24272b, fog:0x07101b
+    },
+    'Морской маршрут': {
+      sign:['СУДАК 36          ↑','НОВЫЙ СВЕТ 43','ФЕОДОСИЯ 75      →'],
+      curveAmp:1.25, curveFreq:.017, curve2:.46,
+      sea:true, city:false, castle:true, viaduct:false,
+      ground:0x806b4c, fog:0xd39168
+    }
+  };
+
+  function trackProfile(){
+    return TRACK_PROFILES[state.track] || TRACK_PROFILES['Таврида'];
+  }
+
+  function trackCurve(z, progress=state.distance){
+    const p=trackProfile();
+    const t=progress*.052 + z;
+    return Math.sin(t*p.curveFreq)*p.curveAmp + Math.sin(t*p.curveFreq*.43 + 1.35)*p.curve2;
+  }
+
+  function trackCurveYaw(z, progress=state.distance){
+    const a=trackCurve(z-4,progress), b=trackCurve(z+4,progress);
+    return Math.atan2(a-b,8)*.72;
+  }
+
+  function updateRouteSigns(){
+    const p=trackProfile();
+    routeSignBoards.forEach((board)=>{
+      const old=board.material.map;
+      const tex=canvasTexture(p.sign,'#185c45','#ffffff',1024,300);
+      board.material.map=tex;
+      board.material.needsUpdate=true;
+      if(old && old!==tex) old.dispose?.();
+    });
+  }
+
+
   function makeSign() {
     const group = new THREE.Group();
     const tex = canvasTexture([
@@ -1813,61 +1869,6 @@
     scene.add(player);
   }
 
-
-  const routeSignBoards = [];
-
-  const TRACK_PROFILES = {
-    'Таврида': {
-      sign:['A-291   СИМФЕРОПОЛЬ 48','БЕЛОГОРСК 112      ↑','ФЕОДОСИЯ 189   КЕРЧЬ 304 →'],
-      curveAmp:.28, curveFreq:.010, curve2:.12,
-      sea:false, city:true, castle:false, viaduct:true,
-      ground:0xa38657, fog:0xb88768
-    },
-    'Южный берег': {
-      sign:['ЯЛТА 18          ↑','АЛУШТА 47','СЕВАСТОПОЛЬ 82   ↗'],
-      curveAmp:2.05, curveFreq:.022, curve2:.72,
-      sea:true, city:true, castle:true, viaduct:true,
-      ground:0x756448, fog:0xc98768
-    },
-    'Ночной Симферополь': {
-      sign:['СИМФЕРОПОЛЬ ЦЕНТР ↑','АЭРОПОРТ 16','ОБЪЕЗДНАЯ 7      →'],
-      curveAmp:.82, curveFreq:.015, curve2:.24,
-      sea:false, city:true, castle:false, viaduct:false,
-      ground:0x24272b, fog:0x07101b
-    },
-    'Морской маршрут': {
-      sign:['СУДАК 36          ↑','НОВЫЙ СВЕТ 43','ФЕОДОСИЯ 75      →'],
-      curveAmp:1.25, curveFreq:.017, curve2:.46,
-      sea:true, city:false, castle:true, viaduct:false,
-      ground:0x806b4c, fog:0xd39168
-    }
-  };
-
-  function trackProfile(){
-    return TRACK_PROFILES[state.track] || TRACK_PROFILES['Таврида'];
-  }
-
-  function trackCurve(z, progress=state.distance){
-    const p=trackProfile();
-    const t=progress*.052 + z;
-    return Math.sin(t*p.curveFreq)*p.curveAmp + Math.sin(t*p.curveFreq*.43 + 1.35)*p.curve2;
-  }
-
-  function trackCurveYaw(z, progress=state.distance){
-    const a=trackCurve(z-4,progress), b=trackCurve(z+4,progress);
-    return Math.atan2(a-b,8)*.72;
-  }
-
-  function updateRouteSigns(){
-    const p=trackProfile();
-    routeSignBoards.forEach((board)=>{
-      const old=board.material.map;
-      const tex=canvasTexture(p.sign,'#185c45','#ffffff',1024,300);
-      board.material.map=tex;
-      board.material.needsUpdate=true;
-      if(old && old!==tex) old.dispose?.();
-    });
-  }
 
   function applyTrackWorldVisibility(){
     const p=trackProfile();
