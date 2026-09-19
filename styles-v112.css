@@ -1713,3 +1713,81 @@ body{
   .home-nav button{height:47px!important}
   .home-settings{height:36px!important}
 }
+
+
+/* === v1.1.3 HOME HERO COMPOSITION FIX === */
+.screen-home{
+  isolation:isolate;
+}
+.home3d-canvas{
+  filter:brightness(1.08) saturate(1.05) contrast(1.02);
+}
+.home-logo{
+  top:13.8%!important;
+  left:14%!important;
+  right:14%!important;
+}
+.home-logo strong{
+  font-size:clamp(37px,10.8vw,54px)!important;
+}
+.home-logo em{
+  font-size:clamp(41px,11.6vw,59px)!important;
+}
+.home-logo small{
+  margin-top:12px!important;
+}
+
+/* Restore the road sign as a small scenic cue instead of a large UI panel. */
+.home-sign{
+  display:grid!important;
+  left:calc(var(--safe-left) + 18px)!important;
+  right:auto!important;
+  top:31.4%!important;
+  width:146px!important;
+  min-height:54px!important;
+  grid-template-columns:1fr!important;
+  border-width:1px!important;
+  border-radius:4px!important;
+  transform:rotate(-1.2deg)!important;
+  opacity:.86!important;
+  box-shadow:0 8px 18px rgba(0,0,0,.24)!important;
+  pointer-events:none!important;
+}
+.home-sign>div:first-child{
+  padding:6px 8px!important;
+  gap:1px!important;
+}
+.home-sign>div+div{
+  display:none!important;
+}
+.home-sign .route-code{
+  font-size:8px!important;
+  opacity:.96;
+}
+.home-sign .route-row{
+  font-size:7px!important;
+  line-height:1.08!important;
+}
+.home-stage-meta{
+  bottom:calc(var(--safe-bottom) + 204px)!important;
+  z-index:8!important;
+}
+.home-route-pill,
+.home-car-card{
+  background:linear-gradient(180deg,rgba(12,17,24,.72),rgba(5,8,13,.91))!important;
+}
+.home-car-card{
+  width:min(45%,176px)!important;
+}
+.home-actions{
+  z-index:9!important;
+}
+@media(max-height:740px){
+  .home-logo{top:12.9%!important}
+  .home-sign{top:29.8%!important;transform:scale(.92) rotate(-1.2deg)!important;transform-origin:left top!important}
+  .home-stage-meta{bottom:calc(var(--safe-bottom) + 183px)!important}
+}
+@media(max-width:380px){
+  .home-sign{left:calc(var(--safe-left) + 12px)!important;width:134px!important}
+  .home-logo{left:12%!important;right:12%!important}
+}
