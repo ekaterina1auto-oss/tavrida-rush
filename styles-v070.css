@@ -950,8 +950,7 @@ body{
   background:
     radial-gradient(circle at center,rgba(10,14,18,.88) 0 57%,transparent 58%),
     conic-gradient(from 222deg,
-      rgba(120,207,255,.9) 0deg,
-      #eefcff calc(var(--speed-angle) * .36),
+      rgba(120,207,255,.92) 0deg,
       #ffc400 var(--speed-angle),
       rgba(255,255,255,.12) var(--speed-angle),
       rgba(255,255,255,.12) 276deg,
