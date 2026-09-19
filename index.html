@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>Tavrida Rush — Alpha</title>
   <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="stylesheet" href="styles-v03.css?v=20260919-0851" />
+  <link rel="stylesheet" href="styles-v032.css?v=20260919-0905" />
 </head>
 <body>
   <main id="app" class="app-shell" aria-live="polite">
@@ -112,22 +112,37 @@
         <button id="rightBtn" class="control">→</button>
       </div>
       <div id="gameOver" class="game-over hidden">
-        <div class="glass over-card">
-          <h2>АВАРИЯ</h2>
-          <p id="gameOverResult"></p>
-          <div class="upgrade-center-card">
-            <b>ЦЕНТР АВТОАПГРЕЙДА</b>
-            <span>➡️ г. Симферополь, ул. Воровского, 19</span>
-            <a href="tel:+79780465881">+7 (978) 046-58-81</a>
+        <div class="glass over-card result-card">
+          <div class="result-kicker">TAVRIDA RUSH</div>
+          <h2>ЗАЕЗД ЗАВЕРШЁН</h2>
+          <p id="gameOverResult" class="result-summary"></p>
+
+          <div class="result-stats">
+            <div><span>МАКС. СКОРОСТЬ</span><b id="resultSpeed">0</b><small>км/ч</small></div>
+            <div><span>NEAR MISS</span><b id="resultNear">0</b><small>раз</small></div>
+            <div><span>ДИСТАНЦИЯ</span><b id="resultDistance">0.0</b><small>км</small></div>
           </div>
-          <button id="retryBtn" class="cta">ЕЩЁ РАЗ</button>
-          <button class="secondary" data-screen="home">В МЕНЮ</button>
+
+          <div class="upgrade-center-card native-partner-card">
+            <div class="partner-topline"><span>ПАРТНЁР TAVRIDA RUSH</span><i>82</i></div>
+            <b>Центр Автоапгрейда</b>
+            <p>Прокачай не только игру — прокачай и свой автомобиль.</p>
+            <div class="partner-location">Симферополь · ул. Воровского, 19</div>
+            <div class="partner-actions">
+              <a class="partner-action call" href="tel:+79780465881">☎ Позвонить</a>
+              <a class="partner-action route" href="https://yandex.ru/maps/?text=%D0%A1%D0%B8%D0%BC%D1%84%D0%B5%D1%80%D0%BE%D0%BF%D0%BE%D0%BB%D1%8C%2C%20%D1%83%D0%BB.%20%D0%92%D0%BE%D1%80%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%2C%2019" target="_blank" rel="noopener">⌖ Маршрут</a>
+            </div>
+            <a class="partner-phone" href="tel:+79780465881">+7 (978) 046-58-81</a>
+          </div>
+
+          <button id="retryBtn" class="cta result-retry">ПОВТОРИТЬ ЗАЕЗД</button>
+          <button class="secondary result-menu" data-screen="home">В МЕНЮ</button>
         </div>
       </div>
     </section>
 
     <div id="toast" class="toast"></div>
   </main>
-  <script type="module" src="game-v031.js?v=20260919-0848"></script>
+  <script type="module" src="game-v032.js?v=20260919-0905"></script>
 </body>
 </html>
