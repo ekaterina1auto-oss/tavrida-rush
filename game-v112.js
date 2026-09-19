@@ -852,6 +852,8 @@
 
     // All hero cars use the rounded loft. The previous coarse shell made Porsche/AMG
     // look like low-poly toys on the main screen.
+    // "refined" is still used below for the detailed wheel arches on BMW/Vesta.
+    const refined = type==='bmw' || type==='vesta';
     const bodyShoulder = type==='porsche' ? .76 : (type==='amg' ? .80 : (type==='bmw' ? .82 : .84));
     const cabinShoulder = type==='porsche' ? .72 : (type==='amg' ? .76 : (type==='bmw' ? .78 : .80));
     const body=loftShellRounded(spec.body,paint,bodyShoulder);
