@@ -50,3 +50,5 @@ mix-blend-mode:screen;filter:blur(1px);transform:perspective(500px) rotateX(72de
   .garage-showcase-3d{top:9.8%;height:43%}
   .garage-hint{font-size:7px}
 }
+
+.caption b{color:#f4c027;font-weight:900}
