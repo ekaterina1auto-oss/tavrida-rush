@@ -26,3 +26,27 @@
 .home-nav{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-top:8px}.home-nav button,.home-settings{height:55px;border-radius:11px;background:linear-gradient(180deg,rgba(32,39,49,.95),rgba(18,23,31,.97));border:1px solid rgba(255,255,255,.19);display:grid;grid-template-columns:34px 1fr 18px;align-items:center;padding:0 7px;box-shadow:0 5px 14px rgba(0,0,0,.25)}.home-nav span,.home-settings span{font-size:18px}.home-nav b,.home-settings b{font-size:10px;font-style:italic}.home-nav i,.home-settings i{font-size:20px;font-style:normal;color:#c7cbd0}.home-settings{width:42%;height:42px;margin:9px auto 0}
 .home-play:active,.home-nav button:active,.home-settings:active{transform:translateY(1px);filter:brightness(.94)}
 @media(max-width:380px){.home-topbar{grid-template-columns:1.35fr .78fr .7fr;gap:4px}.pilot-card{grid-template-columns:42px 1fr}.wallet{padding-left:5px}.home-logo{top:14%}.home-sign{left:10%;right:10%;top:27%}.home-nav b{font-size:9px}}
+
+/* === v0.2 WebGL / Three.js === */
+.garage-showcase-3d{top:10.5%;height:47%;overflow:hidden;border-radius:18px}
+#garage3d,#race3d{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+.garage-showcase-3d:after{content:"";position:absolute;left:8%;right:8%;bottom:4%;height:12%;background:radial-gradient(ellipse,rgba(255,196,0,.24),transparent 68%);filter:blur(8px);pointer-events:none}
+.garage-hint{position:absolute;left:50%;bottom:2.5%;transform:translateX(-50%);font-size:8px;letter-spacing:.08em;color:rgba(255,255,255,.68);background:rgba(7,10,14,.5);padding:5px 8px;border-radius:10px;white-space:nowrap;pointer-events:none}
+.garage-showcase-3d .garage-fx{z-index:3}
+.screen-race{background:#090c11}
+.race-viewport{background:linear-gradient(#627997,#db9a6b 42%,#efd092 59%,#6b795d 60%,#14171b 100%)}
+.race-cinematic-shade{position:absolute;inset:0;z-index:4;pointer-events:none;background:
+linear-gradient(180deg,rgba(0,0,0,.14),transparent 26%,transparent 72%,rgba(0,0,0,.24)),
+radial-gradient(circle at 50% 58%,transparent 0 40%,rgba(0,0,0,.20) 100%)}
+.hud,.race-label,.pause-btn,.event-banner{z-index:10}
+.speed-vignette{position:absolute;inset:0;z-index:5;pointer-events:none;opacity:0;transition:opacity .18s;background:
+repeating-linear-gradient(90deg,transparent 0 12%,rgba(255,255,255,.08) 12.2%,transparent 12.7% 25%);
+mix-blend-mode:screen;filter:blur(1px);transform:perspective(500px) rotateX(72deg) scaleY(2);transform-origin:bottom}
+.speed-vignette.fast{opacity:.36;animation:speedRush .22s linear infinite}
+@keyframes speedRush{to{background-position:0 55px}}
+.controls{z-index:20;position:relative}
+.over-card h2{margin:0 0 8px}
+@media(max-width:520px){
+  .garage-showcase-3d{top:9.8%;height:43%}
+  .garage-hint{font-size:7px}
+}
