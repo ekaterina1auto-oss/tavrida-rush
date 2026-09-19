@@ -255,3 +255,44 @@ body{
     border-radius:22px !important;
   }
 }
+
+/* Game Over business CTA */
+.upgrade-center-card{
+  margin:12px 0 4px;
+  padding:12px 14px;
+  border-radius:13px;
+  background:linear-gradient(180deg,rgba(255,196,0,.12),rgba(255,196,0,.05));
+  border:1px solid rgba(255,196,0,.45);
+  text-align:left;
+  box-shadow:inset 0 0 24px rgba(255,196,0,.04);
+}
+.upgrade-center-card b{
+  display:block;
+  margin-bottom:7px;
+  color:#ffd12b;
+  font-size:clamp(13px,3.7vw,17px);
+  font-weight:1000;
+  letter-spacing:.02em;
+}
+.upgrade-center-card span{
+  display:block;
+  color:#f3f4f6;
+  font-size:clamp(11px,3.1vw,14px);
+  line-height:1.35;
+}
+.upgrade-center-card a{
+  display:inline-block;
+  margin-top:7px;
+  color:#fff;
+  font-size:clamp(14px,4vw,18px);
+  font-weight:1000;
+  text-decoration:none;
+}
+.upgrade-center-card a:active{opacity:.78}
+.over-card{
+  max-width:520px;
+}
+@media(max-height:700px){
+  .over-card{padding:14px !important}
+  .upgrade-center-card{margin:8px 0 2px;padding:9px 11px}
+}
