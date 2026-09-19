@@ -13,7 +13,7 @@
 <body>
   <main id="app" class="app-shell" aria-live="polite">
     <section id="screen-home" class="screen is-active screen-home">
-      <img class="screen-art" src="assets/menu.webp" alt="Tavrida Rush" />
+      <img class="screen-art" src="assets/menu.jpg" alt="Tavrida Rush" />
       <div class="hit hit-play" data-screen="race" aria-label="Играть"></div>
       <button class="hit hit-garage" data-screen="garage" aria-label="Гараж"></button>
       <button class="hit hit-tracks" data-screen="tracks" aria-label="Трассы"></button>
@@ -22,32 +22,37 @@
     </section>
 
     <section id="screen-tracks" class="screen screen-panel">
-      <img class="screen-art dim" src="assets/tracks.webp" alt="Выбор трассы" />
+      <img class="screen-art dim zoomed" src="assets/menu.jpg" alt="Выбор трассы" />
       <header class="topbar">
         <button class="back" data-screen="home">‹</button>
         <div><b>ВЫБОР ТРАССЫ</b><span id="trackCaption">Таврида</span></div>
         <div class="credits">CR 12 480</div>
       </header>
       <div class="track-list glass">
-        <button class="track-card selected" data-track="Таврида" data-diff="Средняя" data-reward="+50%">ТАВРИДА <small>A-291 · мосты · ATAN / TES</small><em>+50%</em></button>
-        <button class="track-card" data-track="Южный берег" data-diff="Высокая" data-reward="+70%">ЮЖНЫЙ БЕРЕГ <small>серпантин · море · скалы</small><em>+70%</em></button>
-        <button class="track-card" data-track="Ночной Симферополь" data-diff="Средняя" data-reward="+60%">НОЧНОЙ СИМФЕРОПОЛЬ <small>мокрый асфальт · городской поток</small><em>+60%</em></button>
-        <button class="track-card" data-track="Морской маршрут" data-diff="Низкая" data-reward="+40%">МОРСКОЙ МАРШРУТ <small>побережье · закат · свободный поток</small><em>+40%</em></button>
+        <button class="track-card selected" data-track="Таврида">ТАВРИДА <small>A-291 · мосты · ATAN / TES</small><em>+50%</em></button>
+        <button class="track-card" data-track="Южный берег">ЮЖНЫЙ БЕРЕГ <small>серпантин · море · скалы</small><em>+70%</em></button>
+        <button class="track-card" data-track="Ночной Симферополь">НОЧНОЙ СИМФЕРОПОЛЬ <small>городской поток · ночь</small><em>+60%</em></button>
+        <button class="track-card" data-track="Морской маршрут">МОРСКОЙ МАРШРУТ <small>побережье · закат</small><em>+40%</em></button>
         <button class="cta" data-screen="home">ВЫБРАТЬ ТРАССУ</button>
       </div>
     </section>
 
     <section id="screen-garage" class="screen screen-panel">
-      <img class="screen-art dim" src="assets/garage.webp" alt="Гараж Tavrida Rush" />
+      <img class="screen-art dim garage-bg" src="assets/menu.jpg" alt="Гараж Tavrida Rush" />
       <header class="topbar">
         <button class="back" data-screen="home">‹</button>
         <div><b>ГАРАЖ</b><span id="garageSubtitle">BMW M340i</span></div>
         <div class="credits">CR 12 480</div>
       </header>
+      <div class="garage-showcase">
+        <div id="garageCar" class="garage-car bmw" aria-label="Выбранная машина">
+          <i class="car-roof"></i><i class="car-glass"></i><i class="car-body"></i>
+          <i class="wheel wl"></i><i class="wheel wr"></i><i class="lamp ll"></i><i class="lamp lr"></i>
+        </div>
+        <div id="garageFx" class="garage-fx"></div>
+      </div>
       <div class="garage-sheet glass">
         <div class="garage-main">
-          <img id="garageCar" class="garage-car" src="assets/player.png" alt="Выбранная машина" />
-          <div id="garageFx" class="garage-fx"></div>
           <div><b id="garageName">BMW M340i</b><span id="garageClass">S · 642 · Premium</span></div>
         </div>
         <div class="garage-grid">
@@ -69,8 +74,9 @@
 
     <section id="screen-race" class="screen screen-race">
       <div class="race-viewport" id="raceViewport">
-        <img id="raceBg" class="race-bg" src="assets/race.webp" alt="Трасса Таврида" />
-        <div class="race-motion" id="raceMotion"></div>
+        <img id="raceBg" class="race-bg" src="assets/menu.jpg" alt="Трасса Таврида" />
+        <div class="race-shade"></div>
+        <div class="road-perspective"><i></i><i></i></div>
         <div class="hud">
           <div><b id="hudSpeed">154</b><span>КМ/Ч</span></div>
           <div><b>×<span id="hudCombo">1</span></b><span>КОМБО</span></div>
@@ -80,7 +86,9 @@
         <button id="pauseBtn" class="pause-btn">ПАУЗА</button>
         <div id="eventBanner" class="event-banner">NEAR MISS ×2</div>
         <div id="trafficLayer" class="traffic-layer"></div>
-        <img id="playerCar" class="player-car" src="assets/player.png" alt="Автомобиль игрока" />
+        <div id="playerCar" class="player-car bmw" aria-label="Автомобиль игрока">
+          <i class="p-roof"></i><i class="p-body"></i><i class="p-tail left"></i><i class="p-tail right"></i>
+        </div>
         <div id="roadsideLayer" class="roadside-layer"></div>
       </div>
       <div class="controls">
