@@ -10,7 +10,7 @@
   <title>Tavrida Rush — Alpha</title>
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link rel="stylesheet" href="styles-v050.css?v=20260919-1015" />
+  <link rel="stylesheet" href="styles-v051.css?v=20260919-1040" />
 </head>
 <body>
   <main id="app" class="app-shell" aria-live="polite">
@@ -107,11 +107,23 @@
         <div id="eventBanner" class="event-banner">NEAR MISS ×2</div>
         <div class="speed-vignette" id="speedVignette"></div>
       </div>
-      <div class="controls">
-        <button id="leftBtn" class="control">←</button>
-        <button id="brakeBtn" class="control">ТОРМОЗ</button>
-        <button id="gasBtn" class="control gas">ГАЗ</button>
-        <button id="rightBtn" class="control">→</button>
+      <div class="controls driving-controls" aria-label="Управление автомобилем">
+        <div class="steer-cluster" aria-label="Рулевое управление">
+          <button id="leftBtn" class="control steer-btn steer-left" aria-label="Повернуть налево">
+            <span class="steer-chevron" aria-hidden="true"></span>
+          </button>
+          <button id="rightBtn" class="control steer-btn steer-right" aria-label="Повернуть направо">
+            <span class="steer-chevron" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="pedal-cluster" aria-label="Педали">
+          <button id="brakeBtn" class="control pedal-btn brake-pedal" aria-label="Тормоз">
+            <span class="pedal-face brake-face" aria-hidden="true"><i></i><i></i><i></i></span>
+          </button>
+          <button id="gasBtn" class="control pedal-btn gas gas-pedal" aria-label="Газ">
+            <span class="pedal-face gas-face" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          </button>
+        </div>
       </div>
       <div id="gameOver" class="game-over hidden">
         <div class="glass over-card result-card">
@@ -145,6 +157,6 @@
 
     <div id="toast" class="toast"></div>
   </main>
-  <script type="module" src="game-v050.js?v=20260919-1015"></script>
+  <script type="module" src="game-v050.js?v=20260919-1040"></script>
 </body>
 </html>
